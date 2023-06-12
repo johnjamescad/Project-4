@@ -67,12 +67,10 @@ def predict(args):
 
     for item in columns:
         if item not in args.keys():
-            return addCommonHeaders(
-                    jsonify({
-                        "status": "error",
-                        "message": "Invalid input"
-                    })
-                )
+            return jsonify({
+                "status": "error",
+                "message": "Invalid input"
+            })
 
     age = float(args["age"])
     sex = float(args["sex"])
