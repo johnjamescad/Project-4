@@ -65,8 +65,8 @@ def predictApi():
 def predict(args):
     columns = ["age","sex","cp","trestbps","chol","fbs","restecg","thalach","exang","oldpeak","slope","ca","thal"]
 
-    for item in columns:
-        if item not in args.keys():
+    for item in args.keys():
+        if item not in columns:
             return jsonify({
                 "status": "error",
                 "message": "Invalid input"
@@ -106,9 +106,7 @@ def predict(args):
         [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]],
         columns=columns
     )
-    data_scaled = scaler.transform(test_df[numerical_columns])
-    data_scaled_df = pd.DataFrame(data_scaled, columns=numerical_columns)
-    data_scaled_df = pd.concat([data_scaled_df, test_df[categorical_columns]], axis=1)
+    data_scaled_df = scaler.transform(test_df[feature_columns])
 
     prediction = model.predict(data_scaled_df, verbose=0)
     result["prediction_actual"] = float(prediction[0][0])
@@ -124,7 +122,6 @@ def predict(args):
     
     return result
 
-import pprint
 import requests
 from io import StringIO
 
