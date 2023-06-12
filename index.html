@@ -21,7 +21,7 @@
         <script type="text/javascript">
         d3.select(window).on("load", function() {
             d3.json("https://public-06062023.s3.amazonaws.com/service_host.json").then(function(data) {
-                d3.select("#content_iframe").attr("src", data.hostname)
+                window.location.href = data.hostname;
             });
         });
         </script>
