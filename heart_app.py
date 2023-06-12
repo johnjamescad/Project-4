@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from sklearn.preprocessing import StandardScaler
+import joblib
 import pandas as pd
 import boto3
 import tensorflow as tf
@@ -11,6 +12,7 @@ session = boto3.session.Session()
 s3 = session.resource('s3')
 my_bucket = s3.Bucket('protected-06062023')
 my_bucket.download_file('HeartDisease.h5', 'work/HeartDisease.h5')
+my_bucket.download_file('HeartScaler.sav', 'work/HeartScaler.sav')
 my_bucket.download_file('heart_model.sav', 'work/heart_model.sav')
 my_bucket.download_file('ClassificationReport.json', 'work/ClassificationReport.json')
 my_bucket.download_file('heart_app.html', 'work/heart_app.html')
@@ -37,6 +39,8 @@ target_columns = ["target"]
 feature_columns = [x for x in columns if x not in target_columns]
 categorical_columns = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
 numerical_columns = [x for x in feature_columns if x not in categorical_columns]
+
+scaler = joblib.load("work/HeartScaler.sav") 
 
 model = tf.keras.models.load_model('work/HeartDisease.h5')
 # model = pickle.load(open('work/heart_model.sav', 'rb'))
@@ -104,7 +108,7 @@ def predict(args):
         [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]],
         columns=columns
     )
-    data_scaled = StandardScaler().fit_transform(test_df[numerical_columns])
+    data_scaled = scaler.transform(test_df[numerical_columns])
     data_scaled_df = pd.DataFrame(data_scaled, columns=numerical_columns)
     data_scaled_df = pd.concat([data_scaled_df, test_df[categorical_columns]], axis=1)
 
