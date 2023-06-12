@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+from sklearn.preprocessing import StandardScaler
 import pandas as pd
 import boto3
 import tensorflow as tf
@@ -11,21 +13,49 @@ my_bucket = s3.Bucket('protected-06062023')
 my_bucket.download_file('HeartDisease.h5', 'HeartDisease.h5')
 my_bucket.download_file('heart_model.sav', 'heart_model.sav')
 my_bucket.download_file('ClassificationReport.json', 'ClassificationReport.json')
+my_bucket.download_file('heart_app.html', 'heart_app.html')
+
+ec2 = session.resource('ec2', region_name='us-east-1')
+vpc = ec2.Vpc("vpc-0fd39bdd1e131dcf1")
+
+service_host = {
+    "hostname": ""
+}
+
+for i in vpc.instances.all():
+    service_host["hostname"] = "http://" + i.public_dns_name + ":5000/"
+    break
+
+with open("service_host.json", "w") as file:
+    file.write(json.dumps(service_host))
+
+my_bucket_public = s3.Bucket('public-06062023')
+my_bucket_public.upload_file('service_host.json', 'service_host.json')
+
+columns = ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal","target"]
+target_columns = ["target"]
+feature_columns = [x for x in columns if x not in target_columns]
+categorical_columns = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
+numerical_columns = [x for x in feature_columns if x not in categorical_columns]
 
 model = tf.keras.models.load_model('HeartDisease.h5')
 # model = pickle.load(open('heart_model.sav', 'rb'))
 
 app = Flask(__name__)
+cors = CORS(app)
 
-def addCommonHeaders(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
+@app.route("/", methods=["GET"])
+def indexPage():
+    response = ""
+    with open('heart_app.html', 'r') as file:
+        response = file.read()
     return response
 
 @app.route("/predict", methods=["GET"])
 def predictApi():
     result = predict(request.args)
     response = jsonify(result)
-    return addCommonHeaders(response)
+    return response
 
 
 def predict(args):
@@ -74,8 +104,11 @@ def predict(args):
         [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]],
         columns=columns
     )
+    data_scaled = StandardScaler().fit_transform(test_df[numerical_columns])
+    data_scaled_df = pd.DataFrame(data_scaled, columns=numerical_columns)
+    data_scaled_df = pd.concat([data_scaled_df, test_df[categorical_columns]], axis=1)
 
-    prediction = model.predict(test_df, verbose=0)
+    prediction = model.predict(data_scaled_df, verbose=0)
     result["prediction_actual"] = float(prediction[0][0])
     result["prediction_rounded"] = round(float(prediction[0][0]), 0)
 
