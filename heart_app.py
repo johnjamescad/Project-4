@@ -26,7 +26,7 @@ for i in vpc.instances.all():
     service_host["hostname"] = "http://" + i.public_dns_name + ":5000/"
     break
 
-with open("service_host.json", "w") as file:
+with open("work/service_host.json", "w") as file:
     file.write(json.dumps(service_host))
 
 my_bucket_public = s3.Bucket('public-06062023')
