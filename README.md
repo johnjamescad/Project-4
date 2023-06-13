@@ -23,7 +23,7 @@ Github Pages:
 We started with Pandas describe\( \) method.  
 ![Pandas describe of the data](Screenshots/Data-Describe.png)  
   
-After we which we created Pearson Correlation Coefficient matrix and plotted it, which should reasonable correlation between the feature variables and the target.  
+After which we created Pearson Correlation Coefficient matrix and plotted it, which should reasonable correlation between the feature variables and the target.  
 ![Pandas describe of the data](Screenshots/Correlation.png)  
   
 We continued our analysis by looking for outliers, plotting with box plots and scatter plots for all 13 features against the target.
