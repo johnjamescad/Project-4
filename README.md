@@ -5,16 +5,27 @@
 [Napkin Drawings](Documents/Napkin-Drawing-Project04.pdf)  
 [Presentation](Presentation/Project-4-Group-1.pptx)  
   
+  
 Google Colab:  
 [ETL](https://colab.research.google.com/drive/1GpQ29JKaLhXdqncHfyx6sBMs4xKNJHgV?usp=sharing)  
+[ETL in Git](Jupyter/Project04_ETL_CSV.ipynb)  
+  
 [EDA Work](https://colab.research.google.com/drive/1XUSxIBGcxdADNkhOIuPoS6MyIlEaA7nr?usp=sharing)  
+[EDA Work in Git](Jupyter/Project04_ETL_CSV.ipynb)  
+  
 [ML Work](https://colab.research.google.com/drive/114IJn53fqlRZWbhUOkqoIbAn23Wv0SmR?usp=sharing)  
+[ML Work in Git](Jupyter/Project04_ETL_CSV.ipynb)  
+  
   
 Tableau:  
 [Tableau Public](https://public.tableau.com/views/Project4-HeartDisease/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)  
   
 Github Pages:  
 [Heart disease prediction app](https://johnjamescad.github.io/Project-4/)  
+  
+Application code  
+[Python](Application/heart_app.py)  
+[Web Page](Application/heart_app.html)  
   
 ## Table of Contents  
 * [Project Summary](#user-content-project-summary)  
@@ -139,6 +150,8 @@ The F-score is a measure of a test's accuracy. It is calculated from recall and 
   
 ### System Design  
 We did our ETL, EDA and ML work in Google Collab. ETL stage saved the final processed data to a table in PostgreSQL DB hosted in AWS RDS, which was used by EDA and ML stages. From the ML stage we saved the scaler and the ML model to S3. We created a web service in Flask and hosted it in EC2, which read the saved scaler and model from S3. S3 and Github pages were used to host static contents for the application. The web application uses D3 to make web service call to the Flask application we hosted in EC2.  
+  
+To automate operations in AWS while code is updated in Git, we created scripts to do Git pull, stop, and start server.  
   
 ![High Level System Design](Screenshots/High-Level-Design.png)  
   
