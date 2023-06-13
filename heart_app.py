@@ -15,7 +15,6 @@ my_bucket.download_file('HeartDisease.h5', 'work/HeartDisease.h5')
 my_bucket.download_file('HeartScaler.sav', 'work/HeartScaler.sav')
 my_bucket.download_file('heart_model.sav', 'work/heart_model.sav')
 my_bucket.download_file('ClassificationReport.json', 'work/ClassificationReport.json')
-my_bucket.download_file('heart_app.html', 'work/heart_app.html')
 
 ec2 = session.resource('ec2', region_name='us-east-1')
 vpc = ec2.Vpc("vpc-0fd39bdd1e131dcf1")
@@ -34,6 +33,9 @@ with open("work/service_host.json", "w") as file:
 my_bucket_public = s3.Bucket('public-06062023')
 my_bucket_public.upload_file('work/service_host.json', 'service_host.json')
 
+my_bucket_public = s3.Bucket('public-12062023')
+my_bucket_public.upload_file('heart_app.html', 'index.html')
+
 columns = ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal","target"]
 target_columns = ["target"]
 feature_columns = [x for x in columns if x not in target_columns]
@@ -51,7 +53,7 @@ cors = CORS(app)
 @app.route("/", methods=["GET"])
 def indexPage():
     response = ""
-    with open('work/heart_app.html', 'r') as file:
+    with open('heart_app.html', 'r') as file:
         response = file.read()
     return response
 
