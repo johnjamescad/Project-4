@@ -129,11 +129,16 @@ def predict(args):
         [[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]],
         columns=columns
     )
-    data_scaled_df = scaler.transform(test_df[feature_columns])
+    data_scaled_df = pd.DataFrame(scaler.transform(test_df[feature_columns]), columns=feature_columns)
 
-    prediction = model.predict(data_scaled_df, verbose=0)
-    result["prediction_actual"] = float(prediction[0][0])
-    result["prediction_rounded"] = round(float(prediction[0][0]), 0)
+    if app_config["model"] == "neural":
+        prediction = model.predict(data_scaled_df, verbose=0)
+        result["prediction_actual"] = float(prediction[0][0])
+        result["prediction_rounded"] = round(float(prediction[0][0]), 0)
+    else:
+        prediction = model.predict(data_scaled_df)
+        result["prediction_actual"] = float(prediction[0])
+        result["prediction_rounded"] = round(float(prediction[0]), 0)
     result["accuracy"] = report["accuracy"]
 
     if "target" in args.keys():
