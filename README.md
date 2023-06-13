@@ -13,3 +13,17 @@ Tableau:
 Github Pages:  
 [Heart disease prediction app](https://johnjamescad.github.io/Project-4/)  
   
+# Table of Contents
+* Data Preprocessing  
+* * [Exploratory Data Analysis or EDA](#eda)  
+
+<a name="eda"></a>
+## Exploratory Data Analysis \(EDA\)
+
+To measure the performance of the Machine Learning model, we use precision, recall and accuracy (f-score).
+
+The precision of a model describes how many detected items are truly relevant. It is calculated by dividing the true positives by overall positives.
+
+Recall is a measure of how many relevant elements were detected. Therefore it divides true positives by the number of relevant elements.
+
+The F-score is a measure of a test's accuracy. It is calculated from recall and precision values.
