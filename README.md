@@ -1,6 +1,6 @@
 # Project-4  
   
-[Project Plan](UofT-Project04-Plan.pdf)  
+[Project Plan](Documents/UofT-Project04-Plan.pdf)  
   
 Google Colab:  
 [ETL](https://colab.research.google.com/drive/1GpQ29JKaLhXdqncHfyx6sBMs4xKNJHgV?usp=sharing)  
