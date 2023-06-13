@@ -15,9 +15,8 @@ Github Pages:
   
 # Table of Contents
 * Data Preprocessing  
-* * [Exploratory Data Analysis or EDA](#eda)  
+  * [Exploratory Data Analysis or EDA](#user-content-exploratory-data-analysis-eda)  
 
-<a name="eda"></a>
 ## Exploratory Data Analysis \(EDA\)
 
 To measure the performance of the Machine Learning model, we use precision, recall and accuracy (f-score).
