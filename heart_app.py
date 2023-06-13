@@ -34,7 +34,7 @@ my_bucket_public = s3.Bucket('public-06062023')
 my_bucket_public.upload_file('work/service_host.json', 'service_host.json')
 
 my_bucket_public = s3.Bucket('public-12062023')
-with open('heart_app.html', 'r') as file:
+with open('heart_app.html', 'rb') as file:
     my_bucket_public.Object('index.html').put(Body=file, ContentType='text/html')
 
 columns = ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal","target"]
