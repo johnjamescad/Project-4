@@ -52,7 +52,13 @@
     </style>
 
     <script type="text/javascript">
-      const SERVICE_URL = "http://ec2-18-234-163-14.compute-1.amazonaws.com:5000/predict";
+      var SERVICE_URL = "/predict?";
+
+      d3.select(window).on("load", function() {
+          d3.json("https://public-12062023.s3.amazonaws.com/app_config.json").then(function(data) {
+              SERVICE_URL = data.serviceUrl + SERVICE_URL;
+          });
+      });
 
       function makePrediction() {
         event.preventDefault();
@@ -75,7 +81,14 @@
 
         var param = new URLSearchParams(request);
 
-        d3.json(SERVICE_URL + "?" + param.toString()).then(function(data) {
+        d3.json(SERVICE_URL + param.toString()).then(function(data) {
+          document.getElementById("rslt-text").innerHTML = "";
+
+          if (data.status && data.status == "error") {
+            document.getElementById("rslt-text").innerHTML = "Complete the form before analysis.";
+            return;
+          }
+
           var result = data.prediction_actual;
           var rslt = "<p>The result:</p>";
           if (result >= 0.5) {
@@ -85,8 +98,9 @@
             rslt +=
               "<div class='alert alert-success' role='alert'><strong>Negative</strong> ";
           }
-          const prsn = result * 100;
-          rslt += "Probability: " + prsn.toFixed(2) + "% with Accuracy: " + data.accuracy + "% </div>";
+          var prsn = result * 100;
+          var accuracy = data.accuracy * 100;
+          rslt += "Probability: " + prsn.toFixed(2) + "% with Accuracy: " + accuracy.toFixed(2) + "% </div>";
 
           document.getElementById("rslt-text").innerHTML = rslt;
         });
