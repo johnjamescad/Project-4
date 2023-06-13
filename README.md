@@ -11,10 +11,10 @@ Google Colab:
 [ETL in Git](Jupyter/Project04_ETL_CSV.ipynb)  
   
 [EDA Work](https://colab.research.google.com/drive/1XUSxIBGcxdADNkhOIuPoS6MyIlEaA7nr?usp=sharing)  
-[EDA Work in Git](Jupyter/Project04_ETL_CSV.ipynb)  
+[EDA Work in Git](Jupyter/Project04_EDA.ipynb)  
   
 [ML Work](https://colab.research.google.com/drive/114IJn53fqlRZWbhUOkqoIbAn23Wv0SmR?usp=sharing)  
-[ML Work in Git](Jupyter/Project04_ETL_CSV.ipynb)  
+[ML Work in Git](Jupyter/Project04_ML.ipynb)  
   
   
 Tableau:  
