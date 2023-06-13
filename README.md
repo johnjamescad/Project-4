@@ -17,6 +17,9 @@ Github Pages:
 [Heart disease prediction app](https://johnjamescad.github.io/Project-4/)  
   
 ## Table of Contents  
+* [Project Summary](#user-content-project-summary)  
+* [Project Objectives](#user-content-project-objectives)  
+* [Target Audience](#user-content-target-audience)  
 * [Data Source](#user-content-data-source)  
 * Data Preprocessing  
   * [Extract Transform Load or ETL](#user-content-extract-transform-load-etl)  
@@ -24,6 +27,15 @@ Github Pages:
 * [Machine Learning](#user-content-machine-learning)  
 * [System Design](#user-content-system-design)  
   
+### Project Summary  
+Develop a machine learning model that can accurately predict the presence of heart disease based on patient information such as age, sex, blood pressure, cholesterol levels, and other relevant risk factors.  
+  
+### Project Objectives  
+The project aims to develop a predictive model for early detection of heart disease using machine learning algorithms. By analyzing various medical and lifestyle factors, the model will provide accurate risk assessments for individuals, allowing for timely interventions and improved patient outcomes.  
+  
+### Target Audience  
+Health conscious individuals who want to know whether they have heart disease based on some common features and some cardiac related test results.  
+
 ### Data Source
 The dataset used for this project is the Cleveland Heart Disease dataset taken from the UCI repository, which covers 13 features and the diagnosis as listed below:  
   
