@@ -65,6 +65,13 @@ else:
 with open('work/ClassificationReport.json', 'r') as file:
     report = json.loads(file.read())
 
+def is_float(string):
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
+
 app = Flask(__name__)
 cors = CORS(app)
 
@@ -82,7 +89,7 @@ def predict(args):
     columns = ["age","sex","cp","trestbps","chol","fbs","restecg","thalach","exang","oldpeak","slope","ca","thal"]
 
     for item in args.keys():
-        if item not in columns or not str(args[item]).isnumeric():
+        if item not in columns or not is_float(args[item]):
             return {
                 "status": "error",
                 "message": "Invalid input"
