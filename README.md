@@ -22,6 +22,7 @@ Github Pages:
   * [Extract Transform Load or ETL](#user-content-extract-transform-load-etl)  
   * [Exploratory Data Analysis or EDA](#user-content-exploratory-data-analysis-eda)  
 * [Machine Learning](#user-content-machine-learning)  
+* [System Design](#user-content-system-design)  
   
 ### Data Source
 The dataset used for this project is the Cleveland Heart Disease dataset taken from the UCI repository, which covers 13 features and the diagnosis as listed below:  
@@ -81,10 +82,40 @@ We continued our analysis by looking for outliers, plotting with box plots and s
 ![slope vs target](Screenshots/EDA-11.png)  
 ![ca vs target](Screenshots/EDA-12.png)  
 ![thal vs target](Screenshots/EDA-13.png)  
-
+  
 ### Machine Learning  
-We applied various 
+We applied various supervised machine learning models and neural networks. Before fitting the models, we did scaling with Standard Scaler and also divided the dataset to training and testing data.  
+  
+Following are the supervised ML models we used:  
+* Logistic regression  
+* Support Vector Machine / Classifier or SVM / SVC  
+* Random Forest  
+* Decision Tree  
+* K Nearest Neighbor or KNN  
+  
 To measure the performance of the Machine Learning model, we use precision, recall and accuracy (f-score).  
+  
+The aforementioned models gave following metrics:  
+
+Logistic regression  
+![Logistic regression](Screenshots/LR-Metrics.png)  
+Support Vector Machine / Classifier or SVM / SVC  
+![Support Vector Machine / Classifier or SVM / SVC](Screenshots/SVM-Metrics.png)  
+Random Forest  
+![Random Forest](Screenshots/RF-Metrics.png)  
+Decision Tree  
+![Decision Tree](Screenshots/DT-Metrics.png)  
+K Nearest Neighbor or KNN  
+![K Nearest Neighbor or KNN](Screenshots/KNN-Metrics.png)  
+  
+With Keras tuner we found a neural network model that gave us better accuracy.  
+  
+Top 3 Metrics  
+![Top 3 Metrics](Screenshots/Top-3-Metrics.png)  
+Top 3 Parameters  
+![Top 3 Parameters](Screenshots/Top-3-Config.png)  
+Best Model - Metrics  
+![Top 3 Parameters](Screenshots/Best-Metrics.png)  
   
 The precision of a model describes how many detected items are truly relevant. It is calculated by dividing the true positives by overall positives.  
   
@@ -92,3 +123,5 @@ Recall is a measure of how many relevant elements were detected. Therefore it di
   
 The F-score is a measure of a test's accuracy. It is calculated from recall and precision values.  
   
+### System Design  
+![High Level System Design](Screenshots/High-Level-Design.png)  
