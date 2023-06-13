@@ -5,7 +5,7 @@
 [Napkin Drawings](Documents/Napkin-Drawing-Project04.pdf)  
 [Presentation](Presentation/Project-4-Group-1.pptx)  
   
-  
+
 Google Colab:  
 [ETL](https://colab.research.google.com/drive/1GpQ29JKaLhXdqncHfyx6sBMs4xKNJHgV?usp=sharing)  
 [ETL in Git](Jupyter/Project04_ETL_CSV.ipynb)  
@@ -152,6 +152,12 @@ The F-score is a measure of a test's accuracy. It is calculated from recall and 
 We did our ETL, EDA and ML work in Google Collab. ETL stage saved the final processed data to a table in PostgreSQL DB hosted in AWS RDS, which was used by EDA and ML stages. From the ML stage we saved the scaler and the ML model to S3. We created a web service in Flask and hosted it in EC2, which read the saved scaler and model from S3. S3 and Github pages were used to host static contents for the application. The web application uses D3 to make web service call to the Flask application we hosted in EC2.  
   
 To automate operations in AWS while code is updated in Git, we created scripts to do Git pull, stop, and start server.  
+[Update application code](Application/AWS-Scripts/update-webapps.sh)  
+[Check server/service status](Application/AWS-Scripts/check-webapps.sh)  
+[Start server/service](Application/AWS-Scripts/start-webapps.sh)  
+[Stop server/service](Application/AWS-Scripts/stop-webapps.sh)  
+  
+Our high-level design can be pictured this way
   
 ![High Level System Design](Screenshots/High-Level-Design.png)  
   
