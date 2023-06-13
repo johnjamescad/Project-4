@@ -15,10 +15,14 @@ Github Pages:
   
 # Table of Contents
 * Data Preprocessing  
-  * [Exploratory Data Analysis or EDA](#user-content-exploratory-data-analysis-eda)  
+  * [Exploratory Data Analysis or EDA](#user-content-exploratory-data-analysis-eda) 
+* [Machine Learning](#user-content-machine-learning)  
 
 ## Exploratory Data Analysis \(EDA\)
-
+We started with Pandas describe\( \) method.  
+![Pandas describe of the data](Screenshots/Data-Describe.png)  
+  
+## Machine Learning  
 To measure the performance of the Machine Learning model, we use precision, recall and accuracy (f-score).
 
 The precision of a model describes how many detected items are truly relevant. It is calculated by dividing the true positives by overall positives.
