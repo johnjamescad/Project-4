@@ -115,8 +115,10 @@ Top 3 Metrics
 Top 3 Parameters  
 ![Top 3 Parameters](Screenshots/Top-3-Config.png)  
 Best Model - Metrics  
-![Top 3 Parameters](Screenshots/Best-Metrics.png)  
-  
+![Best Model Metrics](Screenshots/Best-Metrics.png)  
+Best Model - Parameters  
+![Best Model Parameters](Screenshots/Best-Config.png)  
+
 The precision of a model describes how many detected items are truly relevant. It is calculated by dividing the true positives by overall positives.  
   
 Recall is a measure of how many relevant elements were detected. Therefore it divides true positives by the number of relevant elements.  
