@@ -3,7 +3,7 @@
 ## Quick Links  
 [Project Plan](Documents/UofT-Project04-Plan.pdf)  
 [Napkin Drawings](Documents/Napkin-Drawing-Project04.pdf)  
-[Presentation](Presentation/Project-4-Group-1.pptx)  
+[Presentation](Presentation/Project-4-Group-1.pdf)  
   
 
 Google Colab:  
